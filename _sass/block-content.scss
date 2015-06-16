@@ -1,0 +1,12 @@
+.block-content {
+  font       : normal normal 400 15px/1.6 Arial, sans-serif;
+  color      : #666;
+
+  &__container {
+    width   : 1140px;
+    margin  : 0 auto;
+    padding : 90px 0;
+
+    @include columns(2);
+  }
+}

@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="block-post">
+    <div class="block-post__container">
+        {% if site.posts.size > 1 %}
+        {% if page.previous != nil %}
+        <a href="{{ page.previous.url }}" class="block-post__control block-post__control_index_previous">
+            {{ page.previous.title | strip_html| strip_newlines | strip | escape }}
+        </a>
+        {% else %}
+        <a href="{{ site.posts.first.url }}" class="block-post__control block-post__control_index_previous">
+            {{ site.posts.first.title | strip_html| strip_newlines | strip | escape }}
+        </a>
+        {% endif %}
+        {% if page.next != nil %}
+        <a href="{{ page.next.url }}" class="block-post__control block-post__control_index_next">
+            {{ page.next.title | strip_html| strip_newlines | strip | escape }}
+        </a>
+        {% else %}
+        <a href="{{ site.posts.last.url }}" class="block-post__control block-post__control_index_next">
+            {{ site.posts.last.title | strip_html| strip_newlines | strip | escape }}
+        </a>
+        {% endif %}
+        {% endif %}
+
+        {% include post.html param=page %}
+    </div>
+</div>

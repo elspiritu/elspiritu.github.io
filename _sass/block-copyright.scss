@@ -1,0 +1,12 @@
+.block-copyright {
+  font           : normal normal 300 15px/1 "Roboto", sans-serif;
+  text-transform : uppercase;
+
+  &__logo {
+    display        : inline-block;
+    height         : 33px;
+    width          : 33px;
+    vertical-align : middle;
+    margin-right   : 0.5em;
+  }
+}

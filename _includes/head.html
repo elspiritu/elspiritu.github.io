@@ -1,0 +1,16 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <meta name="keywords" content="{{ site.keywords }}">
+    <meta name="description" content="{{ site.description }}">
+
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}">
+    <link rel="canonical" href="{{ page.url | replace: 'index.html' , '' | prepend: site.baseurl | prepend: site.url }}">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:700,400,300,100&subset=latin,cyrillic">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.2/flickity.min.css">
+</head>

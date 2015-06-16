@@ -1,0 +1,37 @@
+<div class="block-post__item">
+    <div class="block-post__background" style="background-image: url('{{ include.param.id | prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg'  }}')"></div>
+    <div class="block-post__item-description{% if page.url != include.param.url %} block-post__item-description_view_teaser{% endif %}">
+        <header class="block-post__item-header">
+            <div class="block-post__item-published">{{ include.param.date | date: "%d.%m.%Y %H:%M" }}</div>
+            {% if page.url == include.param.url %}
+            <h1 class="block-post__item-title">
+                {{ include.param.title }}
+            </h1>
+            {% else %}
+            <div class="block-post__item-title">
+                <a href="{{ include.param.url }}" class="block-post__item-link">{{ include.param.title }}</a>
+            </div>
+            {% endif %}
+        </header>
+
+        {% if page.url == include.param.url %}
+        <article class="block-post__item-body">
+            {{ include.param.content }}
+        </article>
+        {% endif %}
+
+        {% if include.param.contact.phone.size > 0 or include.param.contact.mobile.size > 0 %}
+        <footer class="block-post__item-contacts">
+            {% for phone in include.param.contact.phone %}
+            {% assign phone_href = phone | strip_html| strip_newlines | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | escape %}
+            <a class="block-post__item-contact block-post__item-contact_type_phone" href="tel:{{ phone_href }}">{{ phone }}</a>
+            {% endfor %}
+
+            {% for mobile in include.param.contact.mobile %}
+            {% assign mobile_href = mobile | strip_html| strip_newlines | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | escape %}
+            <a class="block-post__item-contact block-post__item-contact_type_mobile" href="tel:{{ mobile_href }}">{{ mobile }}</a>
+            {% endfor %}
+        </footer>
+        {% endif %}
+    </div>
+</div>

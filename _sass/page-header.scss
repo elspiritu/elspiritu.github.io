@@ -1,0 +1,98 @@
+.page-header {
+  position : absolute;
+  top      : 0;
+  right    : 0;
+  left     : 0;
+  z-index  : 1;
+
+  &__container {
+    font           : normal normal 300 10px/1 "Roboto", sans-serif;
+    text-transform : uppercase;
+    margin         : 0 auto;
+    padding        : 30px 60px;
+
+    @include clearfix;
+  }
+
+  &__link {
+    color           : #fff;
+    text-decoration : none;
+    text-transform  : uppercase;
+  }
+
+  &__logo {
+    display        : inline-block;
+    height         : 6em;
+    width          : 6em;
+    vertical-align : middle;
+    margin-right   : 0.5em;
+  }
+
+  &__brand {
+    display        : inline-block;
+    vertical-align : middle;
+  }
+
+  &__title {
+    font          : normal normal 700 30px/1 "Roboto", sans-serif;
+
+    display       : block;
+    margin-bottom : 10px;
+  }
+
+  &__lead {
+    display : block;
+  }
+
+  &__actions {
+    position : absolute;
+    left     : 60px;
+    bottom   : 60px;
+    z-index  : 1;
+  }
+
+  &__action-item {
+    font            : normal normal 300 13px/1 "Roboto", sans-serif;
+    color           : #fff;
+    display         : inline-block;
+    padding         : 1em 1.5em;
+    text-decoration : none;
+    text-transform  : uppercase;
+    border          : 2px solid #07c;
+    border-radius   : 2px;
+
+    @include transition(all 0.2s linear 0s);
+
+    &:before {
+      display                 : inline-block;
+      font                    : normal normal normal 14px/1 FontAwesome;
+      font-size               : inherit;
+      text-rendering          : auto;
+      -webkit-font-smoothing  : antialiased;
+      -moz-osx-font-smoothing : grayscale;
+      margin-right            : .5em;
+
+      @include transform(translate(0, 0));
+    }
+
+    &:hover {
+      background : #07c;
+    }
+
+    & + & {
+      margin-left : 0.5em;
+    }
+
+    &_type_mail:before {
+      content : "\f003";
+    }
+
+    &_type_price:before {
+      content : "\f1c3";
+    }
+
+    &_type_rss:before {
+      content : "\f09e";
+    }
+  }
+}

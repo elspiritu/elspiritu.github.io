@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+{% include header.html %}
+
+<div class="page-content">
+    <div class="page-content__container">
+
+        <div class="block-post">
+            <div class="block-post__container">
+                <a class="block-post__control block-post__control_index_previous"></a>
+                <a class="block-post__control block-post__control_index_next"></a>
+
+                {% for post in site.posts %}
+                {% include post.html param=post %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="block-content">
+            <div class="block-content__container">
+                <header class="block-content__header">
+                    <h1 class="block-content__title">{{ page.title }}</h1>
+                </header>
+                <main>
+                    {{ content }}
+                </main>
+            </div>
+        </div>
+
+        <div class="block-project">
+            <div class="block-project__container">
+                <a class="block-project__control block-project__control_index_previous"></a>
+                <a class="block-project__control block-project__control_index_next"></a>
+
+                <div class="block-project__item">
+                    <div class="block-project__item-title">Смотровая площадка парка Пушкина</div>
+                    <div class="block-project__item-address">Смотровая площадка парка Пушкина</div>
+                </div>
+                <div class="block-project__item">
+                    <div class="block-project__item-title">Успенский собор</div>
+                    <div class="block-project__item-address">Успенский собор</div>
+                </div>
+                <div class="block-project__item">
+                    <div class="block-project__item-title">Бизнес инкубатор</div>
+                    <div class="block-project__item-address">Бизнес инкубатор</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% include footer.html %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.0.2/flickity.pkgd.min.js"></script>
+<script>
+    var _slider = document.querySelector('.block-post__container');
+
+    if (_slider && Flickity) {
+        var _prev = _slider.querySelector('.block-post__control_index_previous');
+        var _next = _slider.querySelector('.block-post__control_index_next');
+        var slider = new Flickity(_slider, {
+            cellSelector: '.block-post__item',
+            imagesLoaded: true,
+            wrapAround: true,
+            prevNextButtons: false,
+            pageDots: false,
+            draggable: false
+        });
+
+        _next && _next.addEventListener("click", function () {
+            slider.next(true);
+        });
+        _prev && _prev.addEventListener("click", function () {
+            slider.previous(true);
+        });
+    }
+</script>
+</body>
+
+</html>
+
