@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body class="page">
+
+<div class="page__container">
+    <div class="header">
+        {% include header.html %}
+        <div class="offers">
+            <div class="offers__container">
+                <!--<div class="offers__container js-flickity" data-flickity-options='{ "imagesLoaded": true, "wrapAround": true, "pageDots": false, "draggable": false, "arrowShape": { "x0": 0, "x1": 25, "y1": 50, "x2": 25, "y2": 48, "x3": 1 } }'>-->
+                {% assign posts = site.posts | limit: 10 %}
+                {% for post in posts %}
+                {% include offer.html param=post %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="container container_layout_content">
+        <div class="content">
+            <div class="content__container">
+                <header class="content__header">
+                    <h1 class="content__title">{{ page.title }}</h1>
+                </header>
+                <main>
+                    {{ content }}
+                </main>
+            </div>
+        </div>
+
+        <div class="projects">
+            <div class="projects__container js-flickity" data-flickity-options='{ "imagesLoaded": true, "wrapAround": true, "pageDots": false, "draggable": false, "arrowShape": { "x0": 0, "x1": 25, "y1": 50, "x2": 25, "y2": 48, "x3": 1 } }'>
+                {% for project in site.project %}
+                <div class="project">
+                    <img src="{{ project.url |prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg' | remove: '/.jpg' | append: '.jpg' }}">
+                    <div class="project__title">
+                        <a class="project__name" href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a>
+                        <a class="project__address" href="{{ project.url | prepend: site.baseurl }}">{{ project.address }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="map">
+            <a class="map__link" href="https://maps.yandex.ru/?ll=40.379078%2C56.150812&z=18&ol=biz&oid=1047959308&l=pmap">ООО «Новый город». 600026, г. Владимир, ул. Тракторная, д. 35</a>
+        </div>
+    </div>
+</div>
+
+{% include footer.html %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flickity/1.1.0/flickity.pkgd.min.js"></script>
+<script>
+    window.onload = function () {
+        jumbotron();
+
+        if (window.Flickity) {
+            var slider = new Flickity('.offers__container', {
+                imagesLoaded: true,
+                wrapAround: true,
+                selectedAttraction: 0.01,
+                friction: 0.15,
+                pageDots: false,
+                draggable: false,
+                arrowShape: {x0: 0, x1: 25, y1: 50, x2: 25, y2: 48, x3: 1}
+            });
+        }
+    };
+
+    _throttle('resize', 'optimizedResize');
+
+    window.addEventListener('optimizedResize', function () {
+        jumbotron();
+    });
+
+    function jumbotron() {
+        var _paddingTop = 150;
+        var _paddingBottom = 100;
+        var _maxHeight = 0;
+        var _offers = document.querySelectorAll('.offer');
+
+        Array.prototype.forEach.call(_offers, function (element) {
+            var _offerHeight = window.innerHeight;
+            var _description = element.querySelector('.offer__description');
+
+            if (_description) {
+                var _descriptionHeight = _description.scrollHeight;
+
+                if (_offerHeight > (_descriptionHeight + _paddingTop + _paddingBottom)) {
+                    element.style.paddingTop = Math.max(Math.ceil((_offerHeight - _descriptionHeight) / 2), _paddingTop) + 'px';
+                }
+                else {
+                    element.style.paddingTop = _paddingTop + 'px';
+                    _offerHeight = _descriptionHeight + _paddingTop + _paddingBottom;
+                }
+            }
+            if (_offerHeight > _maxHeight) {
+                _maxHeight = _offerHeight;
+            }
+        });
+
+        Array.prototype.forEach.call(_offers, function (element) {
+            var _offerHeight = element.scrollHeight;
+
+            if (_offerHeight != _maxHeight) {
+                element.style.height = _maxHeight + 'px';
+            }
+        });
+    }
+
+    function _throttle(type, name) {
+        var running = false;
+
+        window.addEventListener(type, function (e) {
+            if (running) {
+                return;
+            }
+            running = true;
+            if (window.requestAnimationFrame && 'CustomEvent' in window && typeof window.CustomEvent === 'function') {
+                requestAnimationFrame(function () {
+                    var _event = new CustomEvent(name, {});
+
+                    window.dispatchEvent(_event);
+                    running = false;
+                });
+            }
+            else {
+                var _event = document.createEvent('CustomEvent');
+
+                _event.initCustomEvent(name, true, true, {});
+                window.dispatchEvent(_event);
+                running = false;
+            }
+        });
+    }
+    ;
+</script>
+</body>
+
+</html>
