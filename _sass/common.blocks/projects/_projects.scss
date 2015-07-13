@@ -1,0 +1,5 @@
+.projects {
+  @include size();
+  @include margin(0 0 5px);
+  @include padding(0);
+}

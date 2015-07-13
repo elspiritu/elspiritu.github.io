@@ -1,0 +1,9 @@
+.offers {
+  $z-index : 0;
+
+  overflow : hidden;
+  z-index  : $z-index;
+
+  @include position();
+  @include size();
+}

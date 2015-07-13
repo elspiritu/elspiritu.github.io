@@ -1,20 +1,93 @@
 ---
 # Only the main Sass file needs front matter (the dashes are enough)
 ---
+
 @charset "utf-8";
 
 @import "bourbon/bourbon";
 @import "neat/neat";
 
-@import "reset";
+@import "mixins";
+//@import "reset";
 
-@import "page-header";
-@import "page-content";
-@import "page-footer";
+//@import "page-header";
+//@import "page-content";
+//@import "page-footer";
 
-@import "block-post";
-@import "block-content";
+//@import "block-post";
+//@import "block-content";
 
-html, body {
-  height: 100%;
+$footer-height : 185px;
+
+$brand-logo-size : 90px;
+
+@import "common.blocks/page/page";
+@import "common.blocks/brand/brand";
+@import "common.blocks/actions/actions";
+@import "common.blocks/button/button";
+@import "common.blocks/menu/menu";
+@import "common.blocks/contact/contact";
+@import "common.blocks/map/map";
+@import "common.blocks/projects/projects";
+@import "common.blocks/project/project";
+
+@import "common.blocks/header/header";
+@import "common.blocks/layout/layout";
+@import "common.blocks/footer/footer";
+@import "common.blocks/content/content";
+@import "common.blocks/offer/offer";
+@import "common.blocks/offers/offers";
+@import "common.blocks/scheduler/scheduler";
+
+html {
+  height : 100%;
+}
+
+//{% for post in site.posts %}
+//.offer__background_{{ post.id }} {
+//  background-image: url('{{ post.id | prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg'  }}')"
+//}
+//{% endfor %}
+
+.flickity-prev-next-button {
+  background : transparent;
+  overflow: hidden;
+
+  @include size(block, 35px 105px);
+  @include margin(0);
+  @include padding(0);
+
+  &:hover {
+    background: transparent;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+  &.previous {
+    @include position(null, null null null 60px);
+
+    svg {
+      @include position(null, 0 auto 0 0);
+    }
+  }
+
+  &.next {
+    @include position(null, null 60px null null);
+
+    svg {
+      @include position(null, 0 0 0 auto);
+    }
+  }
+
+  svg {
+    @include position(null, 0);
+    @include size(block, 105px);
+  }
+
+  .arrow {
+    fill : #fff;
+  }
 }

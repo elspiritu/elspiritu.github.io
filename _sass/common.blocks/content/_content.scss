@@ -1,0 +1,11 @@
+.content {
+  font  : normal normal 400 15px/1.6 Arial, sans-serif;
+  color : #666;
+
+  &__container {
+    @include size(1140px null);
+    @include margin(0 auto);
+    @include padding(90px 0);
+    //@include columns(2);
+  }
+}

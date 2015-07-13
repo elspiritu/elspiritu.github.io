@@ -1,0 +1,85 @@
+@mixin size($display: block, $value: null) {
+  $width : null;
+  $min-width : null;
+  $max-width : null;
+  $height : null;
+  $min-height : null;
+  $max-height : null;
+
+  @if type-of($display) == list {
+    $value : $display;
+    $display : block;
+  }
+
+  @if length($value) == 1 {
+    $width : nth($value, 1);
+    $height : nth($value, 1);
+  } @else if length($value) == 2 {
+    $width : nth($value, 1);
+    $height : nth($value, 2);
+  } @else if length($value) == 3 {
+    @if (nth($value, 1) == nth($value, 2)) {
+      $width : nth($value, 1);
+    } @else {
+      $min-width : nth($value, 1);
+      $max-width : nth($value, 2);
+    }
+  } @else {
+    @if (nth($value, 1) == nth($value, 2)) {
+      $width : nth($value, 1);
+    } @else {
+      $min-width : nth($value, 1);
+      $max-width : nth($value, 2);
+    }
+    @if (nth($value, 3) == nth($value, 4)) {
+      $height : nth($value, 3);
+    } @else {
+      $min-height : nth($value, 3);
+      $max-height : nth($value, 4);
+    }
+  }
+
+  $sizes : (
+          width : $width,
+          min-width : $min-width,
+          max-width : $max-width,
+          height : $height,
+          min-height : $min-height,
+          max-height : $max-height
+  );
+
+  display : $display;
+
+  @each $size, $value in $sizes {
+    @if is-length($value) {
+      #{$size}: $value;
+    }
+  }
+}
+
+@mixin span($span, $display: block) {
+  $columns : nth($span, 1);
+  $container-columns : container-span($span);
+
+  float   : left;
+  display : $display;
+  width   : percentage($columns / $container-columns);
+}
+
+@mixin float-span($span, $direction: left) {
+  $columns : nth($span, 1);
+  $container-columns : container-span($span);
+
+  display : block;
+  float   : $direction;
+  width   : percentage($columns / $container-columns);
+}
+
+// Нужно как-то определить что за шрифт и установить правильный левый отрицательный отступ
+@mixin inline-span($span, $direction: left) {
+  $columns : nth($span, 1);
+  $container-columns : container-span($span);
+
+  display : inline-block;
+  width   : percentage($columns / $container-columns);
+}

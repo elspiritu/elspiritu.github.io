@@ -1,0 +1,36 @@
+<section class="offer" style="background-image: url('{{ include.param.id | prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg'  }}')">
+    <div class="offer__description{% if page.url != include.param.url %} offer__description_view_teaser{% endif %}">
+        <header class="offer__header">
+            <div class="offer__published">{{ include.param.date | date: "%d.%m.%Y %H:%M" }}</div>
+            {% if page.url == include.param.url %}
+            <h1 class="offer__title">
+                {{ include.param.title }}
+            </h1>
+            {% else %}
+            <div class="offer__title">
+                <a href="{{ include.param.url }}" class="offer__link">{{ include.param.title }}</a>
+            </div>
+            {% endif %}
+        </header>
+
+        {% if page.url == include.param.url %}
+        <article class="offer__body">
+            {{ include.param.content }}
+        </article>
+        {% endif %}
+
+        {% if include.param.contact.phone.size > 0 or include.param.contact.mobile.size > 0 %}
+        <footer class="offer__contacts">
+            {% for phone in include.param.contact.phone %}
+            {% assign phone_href = phone | strip_html| strip_newlines | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | escape %}
+            <a class="contact contact_type_phone" href="tel:{{ phone_href }}">{{ phone }}</a>
+            {% endfor %}
+
+            {% for mobile in include.param.contact.mobile %}
+            {% assign mobile_href = mobile | strip_html| strip_newlines | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | escape %}
+            <a class="contact contact_type_mobile" href="tel:{{ mobile_href }}">{{ mobile }}</a>
+            {% endfor %}
+        </footer>
+        {% endif %}
+    </div>
+</section>

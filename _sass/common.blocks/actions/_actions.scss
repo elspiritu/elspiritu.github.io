@@ -1,0 +1,8 @@
+.actions {
+  z-index : 1;
+
+  @include position(absolute, null null 30px 60px);
+  @include size(inline-block);
+  @include margin(0 -5px);
+  @include padding(0);
+}

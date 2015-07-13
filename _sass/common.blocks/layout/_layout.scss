@@ -1,0 +1,16 @@
+.layout {
+  @include clearfix;
+
+  &_page {
+    @include margin(0);
+    @include padding(0);
+  }
+
+  &_content {
+    background : url("../images/layout/concrete_seamless.jpg") left top repeat #fff;
+    box-shadow : 0 0 15px 5px #000;
+
+    @include position();
+    @include size(null null 100% null);
+  }
+}

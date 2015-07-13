@@ -1,0 +1,93 @@
+.offer {
+  $z-index : 0;
+
+  background-repeat   : no-repeat;
+  background-size     : cover;
+  background-position : center;
+
+  @include position();
+  @include size(100% 100% 100vh null);
+  @include margin(0);
+  @include padding(0 null);
+  //@include padding(150px null 100px);
+
+  &:before {
+    content : "";
+    z-index : $z-index;
+
+    @include position(absolute, 0 0 null 0);
+    @include size(null 300px);
+    @include linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  }
+
+  &:after {
+    z-index : $z-index;
+
+    content : "";
+    clear   : both;
+
+    @include position(absolute, null 0 0 0);
+    @include size(table, null 400px);
+    @include linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35));
+  }
+
+  &__description {
+    z-index    : $z-index + 1;
+    background : rgba(0, 119, 204, .75);
+    color      : #fff;
+
+    @include position();
+    @include size(50% null);
+    @include margin(0 0 0 auto);
+    @include padding(50px 150px 50px 50px);
+
+    &_view_teaser {
+      opacity : 0;
+
+      //@include position(relaitive, 50% 0 null null);
+      //@include position(absolute, 50% 0 null null);
+      //@include transform(translateY(-50%));
+      @include transition(opacity 0.3s linear 0s);
+
+      .offer.is-selected & {
+        opacity : 1;
+
+        @include transition-delay(0.5s);
+      }
+    }
+  }
+
+  &__header {
+
+  }
+
+  &__published {
+    font : normal normal 100 16px/1.5 "Roboto", sans-serif;
+
+    @include margin(null null 1em);
+  }
+
+  &__title {
+    font : normal normal 100 36px/1.2 "Roboto", sans-serif;
+  }
+
+  &__link {
+    color           : #fff;
+    text-decoration : none;
+  }
+
+  &__body {
+    font : normal normal 100 16px/1.5 "Roboto", sans-serif;
+
+    p {
+      @include margin(0 0 1em);
+    }
+
+  }
+
+  &__contacts {
+    display : block;
+
+    @include margin(60px 0 0);
+  }
+}

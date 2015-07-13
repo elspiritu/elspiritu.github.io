@@ -1,0 +1,35 @@
+.scheduler {
+  text-align : right;
+
+  @include size();
+  @include margin(0);
+  @include padding(0);
+
+  &__title {
+    color : #fff;
+    font  : normal normal 300 15px/1 "Roboto", sans-serif;
+
+    @include size();
+    @include margin(0 0 15px);
+    @include padding(0);
+  }
+
+  &__body {
+    color : #fff;
+    font  : normal normal 300 15px/1 "Roboto", sans-serif;
+
+    @include size();
+    @include margin(0);
+    @include padding(0);
+
+    p {
+      @include size();
+      @include margin(0 0 15px);
+      @include padding(0);
+
+      &:last-child {
+        @include margin(0);
+      }
+    }
+  }
+}

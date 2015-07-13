@@ -1,0 +1,48 @@
+.menu {
+  z-index   : 1;
+
+  @include position(absolute, (30px + $brand-logo-size/2 - 13) 60px null null);
+  @include size(inline-block, null calc(100% - 460px) null);
+  @include margin(0 -15px);
+  @include padding(0);
+
+  &__item {
+    float           : left;
+    border-bottom   : 2px solid transparent;
+
+    font            : normal normal 400 13px/1 "Roboto", Arial, sans-serif;
+    color           : #fff;
+    text-decoration : none;
+    text-transform  : uppercase;
+
+    @include size(block);
+    @include padding(0 5px 10px);
+    @include margin(0 5px);
+
+    &:hover {
+      border-bottom-color : #07c;
+    }
+
+    &_state_active {
+      border-bottom-color : #fff;
+    }
+
+    &_type_rss {
+      border : none;
+
+      &:before {
+        content                 : "\f09e";
+        font                    : normal normal normal 14px/1 FontAwesome;
+        font-size               : inherit;
+        text-rendering          : auto;
+        -webkit-font-smoothing  : antialiased;
+        -moz-osx-font-smoothing : grayscale;
+
+        @include size(inline-block);
+        @include margin(0);
+        @include padding(0);
+        @include transform(translate(0, 0));
+      }
+    }
+  }
+}

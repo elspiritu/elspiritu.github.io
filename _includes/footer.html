@@ -1,37 +1,40 @@
-<footer class="page-footer">
-    <div class="page-footer__wrapper">
-        <div class="page-footer__container">
+<footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__container">
 
-            <div class="page-footer__column">
-                <div class="page-footer__column-container">
-                    <div class="page-footer__row">
-                        <img class="page-footer__logo" src="{{ '/assets/images/layout/newcity.svg' | prepend: site.baseurl  }}" alt="ООО «Новый город»">
-                        «Новый город»&ensp;© 2004 -2015
+            <div class="footer__column">
+                <div class="footer__column-container">
+                    <div class="footer__row brand brand_theme_footer">
+                        <img class="brand__logo" src="{{ '/assets/images/layout/newcity.svg' | prepend: site.baseurl  }}" alt="ООО «Новый город»">
+                        <span class="brand__copyright">«Новый город»&ensp;© 2004 -2015</span>
                     </div>
-                    <div class="page-footer__row">
-                        <a class="page-footer__contact-item page-footer__contact-item_type_address" href="#">600026, г. Владимир, ул. <br>Тракторная, д. 35</a>
+                    <div class="footer__row">
+                        <a class="contact contact_type_address footer__address" href="#">600026, г. Владимир, ул. <br>Тракторная, д. 35</a>
                     </div>
                 </div>
             </div>
 
-            <div class="page-footer__column page-footer__column_align_center">
-                <div class="page-footer__column-container">
-                    <div class="page-footer__row">
-                        <a class="page-footer__contact-item page-footer__contact-item_type_phone" href="#">+7 (4922) 53-83-78</a>
-                        <a class="page-footer__contact-item page-footer__contact-item_type_mobile" href="#">+7 (961) 111-3000</a>
+            <div class="footer__column footer__column_align_center">
+                <div class="footer__column-container">
+                    <div class="footer__row footer__contacts">
+                        <a class="contact contact_type_phone footer__phone" href="#">+7 (4922) 53-83-78</a>
+                        <a class="contact contact_type_mobile footer__mobile" href="#">+7 (961) 111-3000</a>
                     </div>
-                    <div class="page-footer__row">
-                        <a class="page-footer__contact-item page-footer__contact-item_type_mail" href="#">Прайс-лист</a>
-                        <a class="page-footer__contact-item page-footer__contact-item_type_price" href="#">Написать нам</a>
+                    <div class="footer__row">
+                        <a class="button button_type_mail" href="#">Прайс-лист</a>
+                        <a class="button button_type_price" href="#">Написать нам</a>
                     </div>
                 </div>
             </div>
 
-            <div class="page-footer__column">
-                <div class="page-footer__column-container">
-                    <div class="page-footer__scheduler-title">Режим работы</div>
-                    <div class="page-footer__scheduler-item">пн - пт &mdash; с 9&nbsp;00 до 17&nbsp;00</div>
-                    <div class="page-footer__scheduler-item">сб &mdash; с 10&nbsp;00 до 15&nbsp;00</div>
+            <div class="footer__column scheduler">
+                <div class="footer__column-container">
+                    <div class="scheduler__title">Режим работы</div>
+                    <div class="scheduler__body">
+                        <p>пн - пт &mdash; с 9&nbsp;00 до 17&nbsp;00</p>
+
+                        <p>сб &mdash; с 10&nbsp;00 до 15&nbsp;00</p>
+                    </div>
                 </div>
             </div>
         </div>

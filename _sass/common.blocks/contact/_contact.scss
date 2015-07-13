@@ -1,0 +1,32 @@
+.contact {
+  vertical-align  : top;
+
+  font            : normal normal 100 18px/1 "Roboto", sans-serif;
+  color           : #fff;
+  text-decoration : none;
+
+  @include size(inline-block);
+  @include margin(0 10px);
+  @include padding(0);
+
+  &:before {
+    display                 : inline-block;
+    font                    : normal normal normal 14px/1 FontAwesome;
+    font-size               : inherit;
+    text-rendering          : auto;
+    -webkit-font-smoothing  : antialiased;
+    -moz-osx-font-smoothing : grayscale;
+
+    @include size(inline-block);
+    @include margin(0 .5em 0 0);
+    @include transform(translate(0, 0));
+  }
+
+  &_type_phone:before {
+    content : "\f095";
+  }
+
+  &_type_mobile:before {
+    content : "\f10b";
+  }
+}

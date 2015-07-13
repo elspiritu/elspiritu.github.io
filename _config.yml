@@ -1,16 +1,33 @@
-url: "https://новыйгороф33.рф"
+url: "http://новыйгород33.рф"
 baseurl: ""
 title: "Производство тротуарной плитки ООО «Новый город»"
 keywords: "Тротуарная плитка, производство тротуарной плитки, тротуарная плитка от производителя"
 description: "ООО «Новый Город» занимается производством и продажей тротуарной плитки. У нас вы можете выгодно и недорого купить тротуарную плитку от производителя"
-email: "info@новыйгороф33.рф"
+email: "info@newcity33.ru"
 
 markdown: "kramdown"
 permalink: "/:categories/:title/"
 timezone: "+0300"
 encoding: "utf-8"
 
+collections:
+  catalog:
+    output: true
+    permalink: /:path/
+  project:
+    output: true
+    permalink: /:collection/:path/
+
 defaults:
+  -
+    scope:
+      path: ""
+    values:
+      sitemap:
+#        lastmod: 2014-01-23
+        priority: 0.5
+        changefreq: 'monthly'
+        exclude: false
   -
     scope:
       path: ""
