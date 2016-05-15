@@ -1,0 +1,38 @@
+@import "bem"
+
++block("button")
+    border : 2px solid #07c
+    border-radius : 2px
+
+    font : normal normal 300 #{13px}/#{1} "Roboto", Arial, sans-serif
+    color : #fff
+    text-decoration : none
+    text-transform : uppercase
+
+    +display(inline-block)
+    +margin(null 5px)
+    +padding(10px 20px)
+    +transition(all 0.2s linear 0s)
+
+    +elem(":before")
+        font : normal normal normal #{14px}/#{1} FontAwesome
+        font-size : inherit
+        text-rendering : auto
+        -webkit-font-smoothing : antialiased
+        -moz-osx-font-smoothing : grayscale
+
+        +display(inline-block)
+        +margin(null 5px null null)
+        +padding(0)
+        +transform(translate(0, 0))
+
+    +mod(":hover")
+        background : #07c
+
+    +mod("type_mail")
+        +elem(":before")
+            content : "\f003"
+
+    +mod("type_price")
+        +elem(":before")
+            content : "\f1c3"

@@ -1,0 +1,47 @@
+@import "bem"
+
++block("menu")
+    z-index : 1
+    max-width : calc(100% - 460px)
+
+    +position(absolute, (30px + $brand-logo-size/2 - 13) 60px null null)
+    +display(inline-block)
+
+    +margin(0 -15px)
+
+    +elem("item")
+        float : left
+        border-bottom : 2px solid transparent
+
+        font : normal normal 400 #{13px}/#{1} "Roboto", Arial, sans-serif
+        color : #fff
+        text-decoration : none
+        text-transform : uppercase
+
+        +padding(0 5px 10px)
+        +margin(0 5px)
+
+        +mod(":hover", "active")
+            border-bottom-color : #07c
+
+        +mod("type_rss")
+            +elem(":before")
+                content : "\f09e"
+                font : normal normal normal #{14px}/#{1} FontAwesome
+                font-size : inherit
+                text-rendering : auto
+                -webkit-font-smoothing : antialiased
+                -moz-osx-font-smoothing : grayscale
+
+                +display(inline-block)
+                +transform(translate(0, 0))
+
+    +mod("state_active")
+        border-bottom-color : #fff
+
+    +mod("type_contacts")
+        +elem("item")
+            color : #353535
+
+            +mod(":hover", "active")
+                border-bottom-color : #353535

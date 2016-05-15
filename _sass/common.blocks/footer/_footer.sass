@@ -1,0 +1,61 @@
+@import "bem"
+
++block("footer")
+    background : url("../images/layout/footer.png") left top repeat
+    overflow : hidden
+    height : $footer-height
+
+    @include position(fixed, null 0 0 0)
+
+    +elem("container")
+        font : normal normal 300 15px/1 "Roboto", sans-serif
+        text-transform : uppercase
+        width : 1140px
+
+        +clearfix
+        +margin(0 auto)
+        +padding(55px 0 40px)
+
+    +elem("column")
+        float : left
+        width : percentage(1/3)
+
+        +mod("align_center")
+            text-align : center
+
+    +elem("contacts")
+        font : normal normal 300 15px/1 "Roboto", sans-serif
+        text-align : center
+        +margin(0 0 15px)
+
+//&__contacts {
+//    text-align :center;
+//
+//    @include size();
+//    @include margin(0 0 15px);
+//    @include padding(0);
+//
+//}
+//
+//&__phone,
+//&__mobile {
+//    font :normal normal 300 15 px / 1 "Roboto", sans-serif;
+//
+//}
+//
+//&__address {
+//    font :normal normal 300 13 px / 2 "Roboto", sans-serif;
+//
+//    @include size();
+//    @include margin(0 0 0 50px);
+//
+//}
+//
+//&__logo {
+//    vertical-align :middle;
+//
+//    @include size(inline-block, 2.2em);
+//    @include margin(0 0 0.5em);
+//    @include padding(0);
+//
+//}

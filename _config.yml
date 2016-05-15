@@ -26,7 +26,7 @@ defaults:
       sitemap:
 #        lastmod: 2014-01-23
         priority: 0.5
-        changefreq: 'monthly'
+        changefreq: "monthly"
         exclude: false
   -
     scope:
@@ -34,3 +34,9 @@ defaults:
       type: "posts"
     values:
       categories: "offer"
+  -
+    scope:
+      path: ""
+      type: "catalog"
+    values:
+      layout: "default"

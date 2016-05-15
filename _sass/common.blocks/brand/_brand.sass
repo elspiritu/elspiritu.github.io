@@ -1,0 +1,45 @@
+@import "bem"
+
++block("brand")
+    color : #fff
+    text-decoration : none
+    text-transform : uppercase
+
+    +display(inline-block)
+
+    +elem("logo")
+        vertical-align : middle
+        +display(inline-block)
+
+    +elem("title")
+        vertical-align : middle
+        +display(inline-block)
+
+    +elem("name")
+        font : normal normal 700 #{30px}/#{1} "Roboto", Arial, sans-serif
+        +margin(0 0 10px)
+
+    +elem("description")
+        font : normal normal 300 #{10px}/#{1} "Roboto", Arial, sans-serif
+
+    +elem("copyright")
+        vertical-align : middle
+        font : normal normal 300 #{15px}/#{1} "Roboto", Arial, sans-serif
+        +display(inline-block)
+
+    +mod("theme_header")
+        z-index : 1
+
+        +position(absolute, 30px null null 60px)
+
+        +elem("logo")
+            +size(90px)
+            +margin(null 0.5em null null)
+
+    +mod("theme_footer")
+        +elem("logo")
+            +size(33px)
+            +margin(null 7px null null)
+
+    +mod("type_contacts")
+        color : #353535

@@ -1,0 +1,214 @@
+@charset "UTF-8";
+@import "bourbon/bourbon";
+
+$bem-block : null;
+$bem-elem : null;
+$global-elem-enum : ();
+$bem-elem-deep : 0;
+$bem-mod-deep : 0;
+$bem-root : null;
+$global-display : block;
+$global-padding : 0;
+$global-margin : 0;
+@function bem-selector($block, $elem: null, $modName: null, $modVal: true) {
+  @if (type-of($block) != "string") {
+    @error "Ошибка типа: Имя блока может быть только строкой";
+  }
+  @if (type-of($elem) != "null" and type-of($elem) != "string") {
+    @error "Ошибка типа: Имя элемента может быть только строкой";
+  }
+  @if (type-of($modName) != "null" and type-of($modName) != "string") {
+    @error "Ошибка типа: Имя модификатора может быть только строкой";
+  }
+  @if (type-of($modVal) != "bool" and type-of($modVal) != "number" and type-of($modVal) != "string") {
+    @error "Ошибка типа: Значение модификатора может быть только строкой, числом или булевым типом";
+  }
+  $selector : ".#{$block}";
+  @if (type-of($elem) != "null") {
+    $elemIndex : str-index($elem, ":");
+    @if $elemIndex == 1 {
+      //$modName : $elem;
+      //$elem : null;
+      //$selector : "#{$selector}#{$elem}";
+      $selector : "&#{$elem}";
+    } @else {
+      $selector : "#{$selector}__#{$elem}";
+    }
+  }
+  @if (type-of($modName) != "null" and $modVal != false) {
+    $modIndex : str-index($modName, ":");
+    @if $modIndex == 1 {
+      $selector : "#{$selector}#{$modName}";
+    } @else {
+      $selector : "#{$selector}_#{$modName}";
+      @if (type-of($modVal) == "number" or type-of($modVal) == "string") {
+        $selector : "#{$selector}_#{$modVal}";
+      }
+    }
+  }
+  @return $selector;
+}
+@mixin padding($vals...) {
+  $global-padding : $vals !global;
+}
+@mixin margin($vals...) {
+  $global-margin : $vals !global;
+}
+@mixin display($val) {
+  $global-display : $val !global;
+}
+@mixin bem-box($display : block, $padding : 0, $margin: 0, $box-sizing: null) {
+  display : $display;
+  @include directional-property(padding, false, $padding);
+  @include directional-property(margin, false, $margin);
+  @if $box-sizing != true and $box-sizing != false and $box-sizing != null {
+    box-sizing : $box-sizing;
+  } @else if $box-sizing == null and $padding != null and $padding != 0 {
+    box-sizing : border-box;
+  }
+  @content;
+}
+@mixin block($block) {
+  $buffer : $bem-block;
+  $bem-block : $block !global;
+  $local-display : $global-display;
+  $local-padding : $global-padding;
+  $local-margin : $global-margin;
+  $global-display : block !global;
+  $global-padding : 0 !global;
+  $global-margin : 0 !global;
+
+  $selector : bem-selector($bem-block);
+  @at-root #{$selector} {
+    @content;
+    display : $global-display;
+    @include directional-property(padding, false, $global-padding);
+    @include directional-property(margin, false, $global-margin);
+  }
+  $global-display : $local-display !global;
+  $global-padding : $local-padding !global;
+  $global-margin : $local-margin !global;
+  $bem-block : $buffer !global;
+}
+@mixin elem($elems...) {
+  $local-root : $bem-root;
+  $local-elem-enum : $global-elem-enum;
+  $local-bem-mod-deep : $bem-mod-deep;
+  $bem-mod-deep : 0 !global;
+  $bem-elem-deep : $bem-elem-deep + 1 !global;
+  $local-display : $global-display;
+  $local-padding : $global-padding;
+  $local-margin : $global-margin;
+  $global-display : block !global;
+  $global-padding : 0 !global;
+  $global-margin : 0 !global;
+  $enum : ();
+
+  @if $local-bem-mod-deep >= 1 or $bem-elem-deep > 1 {
+    $global-display : null !global;
+    $global-padding : null !global;
+    $global-margin : null !global;
+  }
+
+  @each $elem in $elems {
+    $selector : bem-selector($bem-block, $elem, null, false);
+    $enum : append($enum, $selector, comma);
+  }
+  $global-elem-enum : $elems !global;
+  @if length($enum) > 0 {
+    @if $local-bem-mod-deep < 1 and $bem-elem-deep <= 1 {
+      @at-root #{$enum} {
+        @content;
+        display : $global-display;
+        @include directional-property(padding, false, $global-padding);
+        @include directional-property(margin, false, $global-margin);
+      }
+    } @else {
+      $bem-root : & !global;
+      #{$enum} {
+        @content;
+        display : $global-display;
+        @include directional-property(padding, false, $global-padding);
+        @include directional-property(margin, false, $global-margin);
+      }
+    }
+  }
+  $global-elem-enum : $local-elem-enum !global;
+  $bem-elem-deep : $bem-elem-deep - 1 !global;
+  $bem-mod-deep : $local-bem-mod-deep !global;
+  $global-display : $local-display !global;
+  $global-padding : $local-padding !global;
+  $global-margin : $local-margin !global;
+  $bem-root : $local-root !global;
+}
+@mixin mod($mods...) {
+  @if ($bem-mod-deep > 0) {
+    @error "Ошибка синтаксиса: Вложенность модифиторов запрещена";
+  }
+  $enum : ();
+  $bem-mod-deep : $bem-mod-deep + 1 !global;
+  @each $mod in $mods {
+    $modName : null;
+    $modVal : true;
+
+    //@debug $mods;
+    //@debug $mod;
+    //@debug length($mods);
+    //@debug length($mod);
+    //@debug nth($mods, 1);
+    //@debug str-index($mod, " ");
+
+    @if length($mod) >= 1 {
+      $modName : nth($mod, 1);
+    }
+    @if length($mod) >= 2 {
+      $modVal : nth($mod, 2);
+    }
+    @if length($global-elem-enum) > 0 {
+      @each $elem in $global-elem-enum {
+        $selector : bem-selector($bem-block, $elem, $modName, $modVal);
+        $enum : append($enum, $selector, comma);
+      }
+    } @else {
+      $selector : bem-selector($bem-block, null, $modName, $modVal);
+      $enum : append($enum, $selector, comma);
+    }
+  }
+
+  $local-display : $global-display;
+  $local-padding : $global-padding;
+  $local-margin : $global-margin;
+  $global-display : null !global;
+  $global-padding : null !global;
+  $global-margin : null !global;
+  @if length($enum) > 0 {
+    @if $bem-root == null {
+      @at-root #{$enum} {
+        @content;
+        display : $global-display;
+        @include directional-property(padding, false, $global-padding);
+        @include directional-property(margin, false, $global-margin);
+
+      }
+    } @else {
+      @at-root #{$bem-root} {
+        #{$enum} {
+          @content;
+          display : $global-display;
+          @include directional-property(padding, false, $global-padding);
+          @include directional-property(margin, false, $global-margin);
+        }
+      }
+    }
+  }
+  $global-display : $local-display !global;
+  $global-padding : $local-padding !global;
+  $global-margin : $local-margin !global;
+  $bem-mod-deep : $bem-mod-deep - 1 !global;
+}
+@mixin mix($elem, $modName: null, $modVal: true) {
+  $selector : bem-selector($bem-block, $elem, $modName, $modVal);
+  &#{$selector} {
+    @content;
+  }
+}

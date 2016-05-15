@@ -1,0 +1,32 @@
+@import "bem"
+
++block("map")
+    +position(absolute, 0)
+
+    +elem("link")
+        background : url("../images/layout/map.png") center / cover no-repeat
+        outline : none
+        text-indent : -9999px
+        cursor : pointer
+        +position(absolute, 0)
+
+    +elem(":after")
+        content : "Открыть на карте"
+        overflow : hidden
+        font : 200 #{16px}/#{1} "Proxima Nova", Arial, sans-serif
+        color : #fff
+        background : rgba(204, 204, 204, 0.9)
+        text-align : center
+        text-indent : 0
+        text-transform : uppercase
+        cursor : pointer
+        width : 320px
+
+        +position(absolute, null 0 45px 0)
+        +margin(0 auto)
+        +padding(26px 0 23px)
+        +transition(all 0.2s linear 0s)
+
+    +mod(":hover")
+        +elem(":after")
+            background : rgba(53, 53, 53, 0.9)

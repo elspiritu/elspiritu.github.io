@@ -1,0 +1,12 @@
+@import "bem"
+
++block("header")
+    min-height : 100vh
+    background : none #{50%}/#{cover} no-repeat
+
+    +elem("actions")
+        z-index : 1
+
+        +position(absolute, null null 30px 60px)
+        +display(inline-block)
+        +margin(0 -5px)

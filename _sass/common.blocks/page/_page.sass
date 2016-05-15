@@ -1,0 +1,28 @@
+@import "bem"
+
++block("page")
+
+    +elem("container")
+        height : auto !important
+        height : 100%
+        min-height : 100%
+        background : url("../images/layout/concrete_seamless.jpg") left top repeat #fff
+        box-shadow : 0 0 15px 5px #000
+
+        +position()
+
+    +elem("header")
+        +position()
+
+    +elem("footer")
+        z-index : -20
+        clear : both
+        +size(100% 185px)
+        +position(absolute)
+
+    +mod("type_contacts")
+        +elem("header")
+            box-shadow : 0 0 15px 5px #000
+            z-index : 1
+            min-height : auto
+            +position(absolute, 0 0 185px)

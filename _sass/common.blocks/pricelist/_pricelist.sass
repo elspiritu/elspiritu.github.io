@@ -1,0 +1,38 @@
+@import "bem"
+
++block("pricelist")
+    background-repeat : no-repeat
+    background-size : cover
+    background-position : center
+    box-sizing : border-box
+    width : 100%
+    min-height : 100vh
+
+    +position()
+    +padding(200px 0 100px)
+
+    +elem(":before")
+        content : ""
+        z-index : 0
+        height : 300px
+
+        +position(absolute, 0 0 null 0)
+        +linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7))
+
+    +elem(":after")
+        content : ""
+        z-index : 0
+        clear : both
+        height : 400px
+
+        +position(absolute, null 0 0 0)
+        +display(table)
+        +linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))
+
+    +elem("description")
+        z-index : 1
+        color : #fff
+        width : 800px
+
+        +position()
+        +margin(0 0 0 auto)

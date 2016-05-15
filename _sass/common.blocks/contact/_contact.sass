@@ -1,0 +1,41 @@
+@import "bem"
+
++block("contact")
+    vertical-align : top
+
+    font : normal normal 100 #{18px}/#{1} "Roboto", sans-serif
+    color : #fff
+    text-decoration : none
+
+    +display(inline-block)
+    +margin(0 10px)
+
+    +elem(":before")
+        +display(inline-block)
+        font : normal normal normal 14px/1 FontAwesome
+        font-size : inherit
+        text-rendering : auto
+        -webkit-font-smoothing : antialiased
+        -moz-osx-font-smoothing : grayscale
+
+        +margin(0 .5em 0 0)
+
+    +mod("type_phone")
+        +elem(":before")
+            content : "\f095"
+
+    +mod("type_mobile")
+        +elem(":before")
+            content : "\f10b"
+
+    +mod("theme_footer")
+        +mix(null, "type", "address")
+            display : block
+            margin-left : 50px
+            font : normal normal 300 #{13px}/#{2} "Roboto", sans-serif
+
+        +mix(null, "type", "phone")
+            font : normal normal 300 #{15px}/#{1} "Roboto", sans-serif
+
+        +mix(null, "type", "mobile")
+            font : normal normal 300 #{15px}/#{1} "Roboto", sans-serif

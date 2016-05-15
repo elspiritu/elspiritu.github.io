@@ -7,7 +7,7 @@
     </div>
 </a>
 
-<div class="actions actions_theme_welcome">
+<div class="header__actions">
     <a class="button button_type_price" href="#">Прайс-лист</a>
     <a class="button button_type_mail" href="#">Написать нам</a>
 </div>
@@ -16,7 +16,7 @@
     {% assign catalog = site.catalog | sort: 'index' %}
     {% for item in catalog %}
     {% capture tooltip %}{% if item.tooltip.size > 0 %}{{item.tooltip}}{% else %}{{item.title}}{% endif %}{% endcapture %}
-    <a class="menu__item" href="{{ item.url | prepend: site.baseurl }}" title="{{ tooltip }}">{{ item.title }}</a>
+    <a class="menu__item{% if item.url == page.url %} menu__item_active{% endif %}" href="{{ item.url | prepend: site.baseurl }}" title="{{ tooltip }}">{{ item.title }}</a>
     {% endfor %}
     <a class="menu__item menu__item_type_rss" href="{{ '/feed.xml' | prepend: site.baseurl }}" title="Подписаться на RSS"></a>
 </nav>

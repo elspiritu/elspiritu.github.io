@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body class="page page_type_contacts">
+<!--<div class="page__container">-->
+    <header class="page__header header">
+        <a class="brand brand_type_contacts brand_theme_header" href="{{ '/' | prepend: site.baseurl }}">
+            <img class="brand__logo" src="{{ '/assets/images/layout/newcity_black.svg' | prepend: site.baseurl }}" alt="ООО «Новый город»">
+
+            <div class="brand__title">
+                <span class="brand__name">Новый город</span>
+                <span class="brand__description">тротуарная плитка и благоустройство</span>
+            </div>
+        </a>
+
+        <nav class="menu menu_type_contacts">
+            {% assign catalog = site.catalog | sort: 'index' %}
+            {% for item in catalog %}
+            {% capture tooltip %}{% if item.tooltip.size > 0 %}{{item.tooltip}}{% else %}{{item.title}}{% endif %}{% endcapture %}
+            <a class="menu__item{% if item.url == page.url %} menu__item_active{% endif %}" href="{{ item.url | prepend: site.baseurl }}" title="{{ tooltip }}">{{ item.title }}</a>
+            {% endfor %}
+            <a class="menu__item menu__item_type_rss" href="{{ '/feed.xml' | prepend: site.baseurl }}" title="Подписаться на RSS"></a>
+        </nav>
+
+        <div class="map">
+            <a class="map__link" href="https://maps.yandex.ru/?ll=40.379078%2C56.150812&z=18&ol=biz&oid=1047959308&l=pmap">ООО «Новый город». 600026, г. Владимир, ул. Тракторная, д. 35</a>
+        </div>
+    </header>
+<!--</div>-->
+
+<footer class="footer">
+    <div class="footer__container">
+
+        <div class="footer__column">
+            <div class="brand brand_theme_footer">
+                <img class="brand__logo" src="{{ '/assets/images/layout/newcity.svg' | prepend: site.baseurl  }}" alt="ООО «Новый город»">
+                <span class="brand__copyright">«Новый город»&ensp;© 2004 -2015</span>
+            </div>
+            <a class="contact contact_type_address contact_theme_footer" href="#">600026, г. Владимир, ул. <br>Тракторная, д. 35</a>
+        </div>
+
+        <div class="footer__column footer__column_align_center">
+            <div class="footer__contacts">
+                <a class="contact contact_type_phone contact_theme_footer" href="#">+7 (4922) 53-83-78</a>
+                <a class="contact contact_type_mobile contact_theme_footer" href="#">+7 (961) 111-3000</a>
+            </div>
+            <div class="footer__actions">
+                <a class="button button_type_mail" href="#">Прайс-лист</a>
+                <a class="button button_type_price" href="#">Написать нам</a>
+            </div>
+        </div>
+
+        <div class="footer__column scheduler">
+            <div class="scheduler__title">Режим работы</div>
+            <div class="scheduler__body">
+                <p>пн - пт &mdash; с 9&nbsp;00 до 17&nbsp;00</p>
+                <p>сб &mdash; с 10&nbsp;00 до 15&nbsp;00</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+
+</html>

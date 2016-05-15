@@ -1,0 +1,71 @@
+@import "bem"
+
++block("offer")
+    background-repeat : no-repeat
+    background-size : cover
+    background-position : center
+    box-sizing : border-box
+    width : 100%
+    min-height : 100vh
+
+    +position()
+    +padding(200px 0 100px)
+
+    +elem(":before")
+        content : ""
+        z-index : 0
+        height : 300px
+
+        +position(absolute, 0 0 null 0)
+        +linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7))
+
+    +elem(":after")
+        content : ""
+        z-index : 0
+        clear : both
+        height : 400px
+
+        +position(absolute, null 0 0 0)
+        +display(table)
+        +linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.35))
+
+    +elem("description")
+        z-index : 1
+        background : rgba(0, 119, 204, .75)
+        color : #fff
+        width : 50%
+
+        +position()
+        +margin(0 0 0 auto)
+        +padding(50px 150px 50px 50px)
+
+        +mod("view_teaser")
+            opacity : 0
+            +transition(opacity 0.3s linear 0s)
+
+            .offer.is-selected &
+                opacity : 1
+                +transition-delay(0.5s)
+
+    +elem("published")
+        font : normal normal 100 #{16px}/#{1.5} "Roboto", sans-serif
+        +margin(null null 1em)
+
+    +elem("title")
+        font : normal normal 100 #{36px}/#{1.2} "Roboto", sans-serif
+
+    +elem("link")
+        color : #fff
+        text-decoration : none
+
+    +elem("body")
+        font : normal normal 100 #{16px}/#{1.5} "Roboto", sans-serif
+
+        p
+            display : block
+            margin : 0 0 1em
+            padding : 0
+
+    +elem("contacts")
+        +display(block)
+        +margin(60px 0 0)

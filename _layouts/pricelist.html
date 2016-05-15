@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body class="page">
+<div class="page__container">
+    <header class="page__header header">
+        <a class="brand brand_theme_header" href="{{ '/' | prepend: site.baseurl }}">
+            <img class="brand__logo" src="{{ '/assets/images/layout/newcity.svg' | prepend: site.baseurl }}" alt="ООО «Новый город»">
+
+            <div class="brand__title">
+                <span class="brand__name">Новый город</span>
+                <span class="brand__description">тротуарная плитка и благоустройство</span>
+            </div>
+        </a>
+
+        <nav class="menu">
+            {% assign catalog = site.catalog | sort: 'index' %}
+            {% for item in catalog %}
+            {% capture tooltip %}{% if item.tooltip.size > 0 %}{{item.tooltip}}{% else %}{{item.title}}{% endif %}{% endcapture %}
+            <a class="menu__item{% if item.url == page.url %} menu__item_active{% endif %}" href="{{ item.url | prepend: site.baseurl }}" title="{{ tooltip }}">{{ item.title }}</a>
+            {% endfor %}
+            <a class="menu__item menu__item_type_rss" href="{{ '/feed.xml' | prepend: site.baseurl }}" title="Подписаться на RSS"></a>
+        </nav>
+
+        <div class="post">
+            <div class="post__container">
+                <section class="pricelist" style="background-image: url('{{ '/layout/magazine' | prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg'  }}')">
+                    <div class="pricelist__description">
+                            {{ content }}
+                    </div>
+                </section>
+            </div>
+        </div>
+
+    </header>
+
+</div>
+
+{% include footer.html %}
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+@import "bem"
+
++block("scheduler")
+    text-align : right
+
+    +elem("title")
+        color : #fff
+        font : normal normal 300 #{15px}/#{1} "Roboto", sans-serif
+
+        +margin(0 0 15px)
+
+    +elem("body")
+        color : #fff
+        font : normal normal 300 #{15px}/#{1} "Roboto", sans-serif
+
+        p
+            display: block
+            margin: 0 0 15px
+            padding: 0
+
+            &:last-child
+                margin-bottom: 0

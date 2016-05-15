@@ -6,49 +6,52 @@
 <body class="page">
 
 <div class="page__container">
-    <div class="header">
-        {% include header.html %}
+    <header class="page__header header">
+        <a class="brand brand_theme_header" href="{{ '/' | prepend: site.baseurl }}">
+            <img class="brand__logo" src="{{ '/assets/images/layout/newcity.svg' | prepend: site.baseurl }}" alt="ООО «Новый город»">
+
+            <div class="brand__title">
+                <span class="brand__name">Новый город</span>
+                <span class="brand__description">тротуарная плитка и благоустройство</span>
+            </div>
+        </a>
+
+        <div class="header__actions">
+            <a class="button button_type_price" href="#">Прайс-лист</a>
+            <a class="button button_type_mail" href="#">Написать нам</a>
+        </div>
+
+        <nav class="menu">
+            {% assign catalog = site.catalog | sort: 'index' %}
+            {% for item in catalog %}
+            {% capture tooltip %}{% if item.tooltip.size > 0 %}{{item.tooltip}}{% else %}{{item.title}}{% endif %}{% endcapture %}
+            <a class="menu__item{% if item.url == page.url %} menu__item_active{% endif %}" href="{{ item.url | prepend: site.baseurl }}" title="{{ tooltip }}">{{ item.title }}</a>
+            {% endfor %}
+            <a class="menu__item menu__item_type_rss" href="{{ '/feed.xml' | prepend: site.baseurl }}" title="Подписаться на RSS"></a>
+        </nav>
+
         <div class="offers">
             <div class="offers__container">
-                <!--<div class="offers__container js-flickity" data-flickity-options='{ "imagesLoaded": true, "wrapAround": true, "pageDots": false, "draggable": false, "arrowShape": { "x0": 0, "x1": 25, "y1": 50, "x2": 25, "y2": 48, "x3": 1 } }'>-->
                 {% assign posts = site.posts | limit: 10 %}
                 {% for post in posts %}
                 {% include offer.html param=post %}
                 {% endfor %}
             </div>
         </div>
-    </div>
+    </header>
 
-    <div class="container container_layout_content">
-        <div class="content">
-            <div class="content__container">
-                <header class="content__header">
-                    <h1 class="content__title">{{ page.title }}</h1>
-                </header>
-                <main>
-                    {{ content }}
-                </main>
-            </div>
-        </div>
-
-        <div class="projects">
-            <div class="projects__container js-flickity" data-flickity-options='{ "imagesLoaded": true, "wrapAround": true, "pageDots": false, "draggable": false, "arrowShape": { "x0": 0, "x1": 25, "y1": 50, "x2": 25, "y2": 48, "x3": 1 } }'>
-                {% for project in site.project %}
-                <div class="project">
-                    <img src="{{ project.url |prepend: '/assets/images' | prepend: site.baseurl | append: '.jpg' | remove: '/.jpg' | append: '.jpg' }}">
-                    <div class="project__title">
-                        <a class="project__name" href="{{ project.url | prepend: site.baseurl }}">{{ project.title }}</a>
-                        <a class="project__address" href="{{ project.url | prepend: site.baseurl }}">{{ project.address }}</a>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="map">
-            <a class="map__link" href="https://maps.yandex.ru/?ll=40.379078%2C56.150812&z=18&ol=biz&oid=1047959308&l=pmap">ООО «Новый город». 600026, г. Владимир, ул. Тракторная, д. 35</a>
-        </div>
-    </div>
+    <!--<div class="container container_layout_content">-->
+        <!--<div class="content">-->
+            <!--<div class="content__container">-->
+                <!--<header class="content__header">-->
+                    <!--<h1 class="content__title">{{ page.title }}</h1>-->
+                <!--</header>-->
+                <!--<main>-->
+                    <!--{{ content }}-->
+                <!--</main>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
 
 {% include footer.html %}
